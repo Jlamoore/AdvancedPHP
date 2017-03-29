@@ -31,7 +31,7 @@ function CreateAddress($fullName, $email, $address, $city, $state, $zip, $bday) 
         ":city" => $city,
         ":state" => $state,
         ":zip" => $zip,
-        ":birthday" => $bday,
+        ":bday" => $bday,
     );
     if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
         return true;

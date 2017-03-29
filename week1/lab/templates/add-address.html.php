@@ -5,9 +5,13 @@
        Email: <input name="email" value="<?php echo $email; ?>" /> <br />
        Address: <input name="address" value="<?php echo $address; ?>" /> <br />
        City: <input name="city" value="<?php echo $city; ?>" /> <br />
-       State: <input name="state" value="<?php echo $state; ?>" /> <br />
+       State: <select name="state">
+            <?php foreach ($states as $key => $value): ?> 
+              <option value="<?php echo $key; ?>" <?php if ( $state == $key ): ?> selected="selected" <?php endif; ?>><?php echo $value; ?></option>
+            <?php endforeach; ?>
+          </select><br />
        Zip: <input name="zip" value="<?php echo $zip; ?>" /> <br />
-       Birthday: <input type="bday" name="phone" value="<?php echo $bday; ?>" /> <br />
+       Birthday: <input type="date" name="bday" value="<?php echo $bday; ?>" /> <br />
        <input type="submit" value="submit" class="btn btn-primary" />
     </form>
 </div>
