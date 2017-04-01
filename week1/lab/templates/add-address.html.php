@@ -1,3 +1,4 @@
+<!-- Add address form --> 
 <div class="container">
     <h1>Add Address</h1>
     <form action="#" method="post">   
@@ -15,9 +16,3 @@
        <input type="submit" value="submit" class="btn btn-primary" />
     </form>
 </div>
-<?php
-// put your code here
-
-
-?>
-<!-- put your HTML here -->

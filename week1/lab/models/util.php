@@ -9,6 +9,10 @@ function isPostRequest() {
     return ( filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST' );
 }
 
+/**
+ * Return an array of all US states
+ * @return array
+ */
 function GetStates() {
     return array(
         'AL' => 'ALABAMA',

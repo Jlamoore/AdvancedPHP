@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Gets all addresses from database
+ * @return array
+ */
 function ReadAllAddress() {
     $db = dbconnect();
     $stmt = $db->prepare("SELECT * FROM address");
@@ -12,7 +16,7 @@ function ReadAllAddress() {
 }
 
 /**
- * 
+ * Add the address to the database
  * @param string $fullName
  * @param string $email
  * @param string $address
