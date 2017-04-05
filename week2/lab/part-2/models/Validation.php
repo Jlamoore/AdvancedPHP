@@ -6,12 +6,12 @@
 class Validation {
 
     /**
-     * Returns true if a field is not empty or null.
+     * Returns true if a field is empty or null.
      * @param type $field
      * @return bool
      */
-    function FieldNotEmpty($field) {
-        return (bool) isset($field);
+    function FieldIsEmpty($field) {
+        return (bool) empty($field);
     }
 
     /**
@@ -30,7 +30,7 @@ class Validation {
      * @return bool
      */
     function ValidDate($date) {
-        if ($this->FieldNotEmpty($date)) {
+        if ($this->FieldIsEmpty($date)) {
             return (bool) strtotime($date);
         }
         return FALSE;
@@ -42,7 +42,7 @@ class Validation {
      * @return bool
      */
     function ValidEmail($email) {
-        if ($this->FieldNotEmpty($email)) {
+        if ($this->FieldIsEmpty($email)) {
             return (bool) filter_var($email, FILTER_VALIDATE_EMAIL);
         }
         return FALSE;
