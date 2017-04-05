@@ -1,10 +1,11 @@
 <?php
+require_once './models/DBAddress.php';
+require_once './models/CRUD.php';
 include './templates/header.php';
-include './models/dbconnect.php';
-include './models/addressCRUD.php';
-// Read ALL Addresses from the database
 
-$addresses = ReadAllAddress();
+// Read ALL Addresses from the database
+$crud = new CRUD();
+$addresses = $crud->ReadAllAddress();
 
 include './templates/view-address.html.php';
 ?>
