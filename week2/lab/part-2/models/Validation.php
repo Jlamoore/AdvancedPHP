@@ -1,22 +1,24 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of Validation
- *
+ * Validation class
  * @author 001393760
  */
 class Validation {
 
+    /**
+     * Returns true if a field is not empty or null.
+     * @param type $field
+     * @return bool
+     */
     function FieldNotEmpty($field) {
         return (bool) isset($field);
     }
 
+    /**
+     * Validates that the zip is 5 numbers
+     * @param string/int $zip
+     * @return bool
+     */
     function ValidZip($zip) {
         $regex = '/^[0-9]{5}$/';
         return (bool) preg_match($regex, $zip);

@@ -1,18 +1,12 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of Address
- *
+ * Address Class. Contains methods relevant to addresses. And cleans up code.
+ * (Easier to pass an address than all the individual fields)
  * @author 001393760
  */
 class Address {
-
+    
+    // All of the fields of an address
     public $fullName = '';
     public $email = '';
     public $address = '';
@@ -20,7 +14,8 @@ class Address {
     public $state = '';
     public $zip = '';
     public $bday = '';
-
+    
+    // Create an instance of the validator class and make sure the Address is valid
     function ValidAddress() {
         $errors = [];
         $valid = new Validation();

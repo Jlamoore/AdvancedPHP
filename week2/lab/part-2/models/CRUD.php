@@ -1,8 +1,7 @@
 <?php
 
 /**
- * Description of CRUD
- *
+ * Crud class. Connects to DB and does crud stuff.
  * @author 001393760
  */
 class CRUD extends DBAddress {
