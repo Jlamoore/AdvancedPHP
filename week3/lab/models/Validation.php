@@ -4,7 +4,9 @@
  * @author 001393760
  */
 class Validation {
-
+    
+    //Valid passwords should match this regex.
+private $PASSWORD_REGEX = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/";
     /**
      * Returns true if a field is empty or null.
      * @param type $field
@@ -47,5 +49,25 @@ class Validation {
         }
         return FALSE;
     }
-
+    
+    function ValidPassword($pass)
+    {
+        if (!$this->FieldIsEmpty($pass))
+        {
+            return (bool)preg_match($this->PASSWORD_REGEX, $pass);
+        }
+        return FALSE;
+    }
+    
+    function AvailableEmail($db, $email)
+    {
+        $results = $db->getAllEmails();
+        foreach ($results as $result) {
+            if(strtoupper($result["email"]) == strtoupper($email))
+            {
+                return FALSE;
+            }
+        }
+        return TRUE;
+    }
 }

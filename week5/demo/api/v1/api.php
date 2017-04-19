@@ -1,6 +1,6 @@
 <?php
 
-include_once './bootstrap.php';
+include_once './autoload.php';
 
 /*
  * The Rest server is sort of like the page is hosting the API
@@ -85,4 +85,4 @@ try {
 
 
 echo $restServer->getReponse();
-die();
+exit();

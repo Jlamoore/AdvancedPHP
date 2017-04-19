@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Bass DB class. Get a connection to the DB
+ * Base DB class. Get a connection to the DB
  * @author 001393760
  */
 class DBAddress {

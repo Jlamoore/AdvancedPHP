@@ -1,12 +1,12 @@
-<?php
-include './templates/header.php';
-include './models/dbconnect.php';
-include './models/addressCRUD.php';
-// Read ALL Addresses from the database
-
-$addresses = ReadAllAddress();
-
-include './templates/view-address.html.php';
-?>
-</body>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <?php
+        // put your code here
+        ?>
+    </body>
 </html>
