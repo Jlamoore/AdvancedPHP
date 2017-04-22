@@ -11,6 +11,7 @@ class DB {
     protected $user = 'root';
     protected $password = '';
 
+    //create database connection
     public function getDB() {
         if (null != $this->db) {
             return $this->db;
@@ -24,6 +25,7 @@ class DB {
         return $this->db;
     }
 
+    //Retreive all emails from the database
     public function getAllEmails() {
         $db = $this->getDB();
         $stmt = $db->prepare("SELECT email FROM users");
@@ -35,12 +37,13 @@ class DB {
         return $results;
     }
 
+    //Add a login to the database
     public function createLogin($email, $password) {
         $db = $this->getDB();
         $stmt = $db->prepare("INSERT INTO users SET email = :email, password = :password, created = :created");
         $binds = array(
             ":email" => $email,
-            ":password" => $password,
+            ":password" => sha1($password),
             ":created" => date("Y-m-d"),
         );
         if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
@@ -49,7 +52,22 @@ class DB {
 
         return false;
     }
+    
+    //Select the user from the user from the database to check there credentials
+    public function Login($email){
+        $db = $this->getDB();
+        $stmt = $db->prepare("SELECT * FROM users WHERE email = :email");
+        $binds = array(
+            ":email" => $email,
+        );
+        $results = array();
+        if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
+            $results = $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+        return $results;
+    }
 
+    //end the db connection
     public function closeDB() {
         $this->db = null;
     }
