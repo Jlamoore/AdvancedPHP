@@ -7,7 +7,7 @@
     <body>
         <?php
         /* ****************UPDATE FILE**************** */        
-        $file = '.'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'img_8c2ce4918b4a22324885fc1ee7a5c3f0866b09dc.jpg';
+        $file = '.'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'img_60cb6746153150ae3e9e66de077d8f8702b48ecd.jpg';
         
         //http://php.net/manual/en/fileinfo.constants.php
         $finfo = new finfo(FILEINFO_MIME_TYPE);
