@@ -50,6 +50,7 @@ private $PASSWORD_REGEX = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/";
         return FALSE;
     }
     
+    //validate that the passowrd meets tehe minimum requirements
     function ValidPassword($pass)
     {
         if (!$this->FieldIsEmpty($pass))
@@ -59,6 +60,7 @@ private $PASSWORD_REGEX = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/";
         return FALSE;
     }
     
+    //make sure that the email entered doesnt already exist
     function AvailableEmail($db, $email)
     {
         $results = $db->getAllEmails();
