@@ -9,16 +9,16 @@ include_once './autoload.php';
 $restServer = new RestServer();
 
 try {
-    
+
     $restServer->setStatus(200);
-    
+
     $resource = $restServer->getResource();
     $verb = $restServer->getVerb();
     $id = $restServer->getId();
     $serverData = $restServer->getServerData();
-    
-       
-    /* 
+
+
+    /*
      * You can add resoruces that will be handled by the server 
      * 
      * There are clever ways to use advanced variables to sort of
@@ -28,63 +28,73 @@ try {
      * But in this example we will just code it out.
      * 
      */
-    if ( !empty($resource) ) {
-        
-        $resource = ucfirst($resource);
-        
-        $resource = $resource . 'Resource';
-        
-        $resourceData = new $resource();
-        
-        if ( 'GET' === $verb ) {
-            
-            if ( NULL === $id ) {
-                
-                $restServer->setData($resourceData->getAll());                           
-                
-            } else {
-                
-                $restServer->setData($resourceData->get($id));
-                
-            }            
-            
-        }
-                
-        if ( 'POST' === $verb ) {
-            
+    if (!empty($resource)) {
 
+        $resource = ucfirst($resource);
+
+        $resource = $resource . 'Resource';
+
+        $resourceData = new $resource();
+
+        if ('GET' === $verb) {
+
+            if (NULL === $id) {
+
+                $restServer->setData($resourceData->getAll());
+            } else {
+
+                $restServer->setData($resourceData->get($id));
+            }
+        }
+
+        if ('POST' === $verb) {
             if ($resourceData->post($serverData)) {
-                $restServer->setMessage('Address Added');
+                $restServer->setMessage('Corporation Added');
                 $restServer->setStatus(201);
             } else {
-                throw new Exception('Address could not be added');
+                throw new Exception('Corporation could not be added');
             }
-        
         }
-        
-        
-        if ( 'PUT' === $verb ) {
-            
-            if ( NULL === $id ) {
-                throw new InvalidArgumentException('Address ID ' . $id . ' was not found');
+
+
+        if ('PUT' === $verb) {
+
+            if (NULL === $id) {
+                throw new InvalidArgumentException('Corporation ID ' . $id . ' was not found');
+            } else {
+                if ($resourceData->put($serverData, $id)) {
+                    $restServer->setMessage('Corporation Updated');
+                    $restServer->setStatus(201);
+                } else {
+                    throw new Exception('Corporation could not be updated');
+                }
             }
-            
         }
-        
+        if ('DELETE' === $verb) {
+            if (NULL === $id) {
+                throw new InvalidArgumentException('Corporation ID ' . $id . ' was not found');
+            } else {
+                if ($resourceData->delete($id)) {
+                    $restServer->setMessage('Corporation Deleted');
+                    $restServer->setStatus(201);
+                } else {
+                    throw new Exception('Corporation could not be deleted');
+                }
+            }
+        }
     } else {
         throw new InvalidArgumentException($resource . ' Resource Not Found');
-        
     }
-   
-    
+
+
     /* 400 exeception means user sent something wrong */
 } catch (InvalidArgumentException $e) {
     $restServer->setStatus(400);
     $restServer->setErrors($e->getMessage());
     /* 500 exeception means something is wrong in the program */
-} catch (Exception $ex) {    
+} catch (Exception $ex) {
     $restServer->setStatus(500);
-    $restServer->setErrors($ex->getMessage());   
+    $restServer->setErrors($ex->getMessage());
 }
 
 

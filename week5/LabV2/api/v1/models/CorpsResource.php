@@ -11,8 +11,9 @@
  *
  * @author Cloud
  */
-class CorporationResource extends DBSpring implements IRestModel {
+class CorpsResource extends DBSpring implements IRestModel {
 
+    // Get all Corps
     public function getAll() {
         $stmt = $this->getDb()->prepare("SELECT * FROM corps");
         $results = array();
@@ -22,6 +23,7 @@ class CorporationResource extends DBSpring implements IRestModel {
         return $results;
     }
 
+    // Get specific Corp
     public function get($id) {
 
         $stmt = $this->getDb()->prepare("SELECT * FROM corps where id = :id");
@@ -35,6 +37,7 @@ class CorporationResource extends DBSpring implements IRestModel {
         return $results;
     }
 
+    // Add Corp
     public function post($serverData) {
         /* note you should validate before adding to the data base */
         $stmt = $this->getDb()->prepare("INSERT INTO corps SET corp = :corp, incorp_dt = :incorp_dt, email = :email, owner = :owner, phone = :phone, location = :location");
@@ -54,6 +57,7 @@ class CorporationResource extends DBSpring implements IRestModel {
         return false;
     }
 
+    // Delete Corp
     public function delete($id) {
         if (!empty($id)) {
             $stmt = $this->getDb()->prepare("DELETE FROM corps WHERE id = :id");
@@ -65,10 +69,11 @@ class CorporationResource extends DBSpring implements IRestModel {
         }
     }
 
-    public function put($serverData) {
+    //Update Corp
+    public function put($serverData, $id) {
         $stmt = $this->getDb()->prepare("UPDATE corps SET corp = :corp, incorp_dt = :incorp_dt, email = :email, owner = :owner, phone = :phone, location = :location WHERE id = :id");
                 $binds = array(
-            ":id" => $serverData['id'],
+            ":id" => $id,
             ":corp" => $serverData['corp'],
             ":incorp_dt" => $serverData['incorp_dt'],
             ":email" => $serverData['email'],

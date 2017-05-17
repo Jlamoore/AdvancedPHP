@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <!-- Bootstrap -->
         <link rel="stylesheet" href="css/bootstrap.css"/>
     </head>
     <body>
@@ -16,6 +17,8 @@
                  height: 300px;
             }
         </style>
+        
+        <!-- Input -->
         
         <h1>Rest API Lab</h1>
         
@@ -35,7 +38,7 @@
         Data(optional):<br />   
         Corporation Name: <input type="text" name="corp" value="" />
         <br />
-        Incorporation Date: <input type="date" name="incorp_dt" />
+        Incorporation Date: <input type="datetime-local" name="incorp_dt" />
         <br />
         Email <input type="email" name="email" value="" />
         <br />
@@ -51,6 +54,8 @@
         <button>Make Call</button>
         <h3>Results</h3>
         
+        <!-- Output -->
+        
         <textarea name="results"></textarea>
         
         <script type="text/javascript">
@@ -60,6 +65,9 @@
             callBtn.addEventListener('click', makeCall);
         
             function makeCall() {
+                
+                // Get fields
+                
                 var verbfield = document.querySelector('select[name="verb"]');
                 var verb = verbfield.options[verbfield.selectedIndex].value;
                 var resource = document.querySelector('input[name="resource"]').value;
@@ -76,8 +84,12 @@
                 var xmlhttp = new XMLHttpRequest();
 
                 var url = './api/v1/' + resource;
+                
+                // Setup request
 
                 xmlhttp.open(verb, url, true);
+
+                // Send request
 
                 xmlhttp.onreadystatechange = function() {
                     if (xmlhttp.readyState === 4 ) {
