@@ -43,7 +43,7 @@ class DB {
         $stmt = $db->prepare("INSERT INTO users SET email = :email, password = :password, created = :created");
         $binds = array(
             ":email" => $email,
-            ":password" => sha1($password),
+            ":password" => password_hash($password, PASSWORD_DEFAULT),
             ":created" => date("Y-m-d"),
         );
         if ($stmt->execute($binds) && $stmt->rowCount() > 0) {

@@ -36,6 +36,8 @@
         <br />
         email <input type="email" name="email" value="" />
         <br />
+        Password (login only): <input type="password" name="password" value="" />
+        <br />
         addressline1 <input type="text" name="addressline1" value="" />
         <br />
         city <input type="text" name="city" value="" />
@@ -63,6 +65,7 @@
                 var data = {
                     'fullname': document.querySelector('input[name="fullname"]').value,
                     'email': document.querySelector('input[name="email"]').value,
+                    'password': document.querySelector('input[name="password"]').value,
                     'addressline1': document.querySelector('input[name="addressline1"]').value,
                     'city': document.querySelector('input[name="city"]').value,
                     'state': document.querySelector('input[name="state"]').value,
